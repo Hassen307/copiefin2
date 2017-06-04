@@ -40,7 +40,11 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-   
+   <style>
+.active a{
+    color: red !important;
+}
+</style>
     
     
     
@@ -67,22 +71,24 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (auth()->check())
-                   <li><a href="{{ route('home') }}">Home</a></li>
+                   <li class="{{ Request::path() == 'home' ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                     @endif
                     @permission('USERS')
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li class="{{ Request::path() == 'users' ? 'active' : '' }}"><a href="{{ route('users.index') }}">Users</a></li>
                     @endpermission
                     @permission('ROLES')
-                    <li><a href="{{ route('roles.index') }}">Roles</a></li>
+                    <li class="{{ Request::path() == 'roles' ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Roles</a></li>
                     @endpermission
                     @permission('PERMISSIONS')
-                    <li><a href="{{ route('permissions.index') }}">Privileges</a></li>
+                    <li class="{{ Request::path() == 'permissions' ? 'active' : '' }}"><a href="{{ route('permissions.index') }}">Privileges</a></li>
                     @endpermission
                    
                 @if (auth()->check())
                 @if ( !empty ( $permissi ) )
                  @foreach ($permissi as $key => $value)
-                  <li><a href="{{route('page', ['parameter' => $value])}}">{{$value}}</a></li>
+                 @permission($value)
+                  <li  class="{{ Request::path() == 'switchinfo/'.$value ? 'active' : '' }}"><a href="{{route('page', ['parameter' => $value])}}">{{$value}}</a></li>
+                  @endpermission
                  @endforeach
                  @endif 
                  @endif
@@ -189,6 +195,9 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
      <script type="text/javascript" src="{{asset('js/valid.js')}}"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+<script type="text/javascript">
+ 
+</script>
    
   </body>
 </html>

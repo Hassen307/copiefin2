@@ -145,9 +145,9 @@ foreach ($fields as $key => $value) {
     public function update(Request $request, $id)
     {
        $this->validate($request, [
-           'name' => 'required|unique:roles,name',
+           'name' => 'required',
             'description' => 'required',
-            'permission' => 'required',
+            
        ]);
 
         $role = Role::find($id);
@@ -157,11 +157,12 @@ foreach ($fields as $key => $value) {
 
         DB::table("permission_role")->where("permission_role.role_id",$id)
            ->delete();
-
+        $notempty_per=$request->input('permission');
+        if (!empty($notempty_per)){
        foreach ($request->input('permission') as $key => $value) {
            $role->attachPermission($value);
         }
-
+        }
         return redirect()->route('roles.index')
                         ->with('success','Role updated successfully');
     }

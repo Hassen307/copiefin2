@@ -54,10 +54,12 @@ $h[]=$p->name;
        //  $a=Session::get('some');
          //$a=$parameter;
          //dd($$rolePermissions);
+         if (!empty($h)){
     foreach ($h as $o) {
       if($o==$lk){
           $y=true;
       } 
+         }
          }
          //dd($y);
       // $f= $h->contains('item-edit');
