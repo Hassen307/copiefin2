@@ -1,78 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Basic Page Needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
-    <meta name="description" content="Your Description Here">
-    <meta name="keywords" content="bootstrap themes, portfolio, responsive theme">
-    <meta name="author" content="ThemeForces.Com">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-	
-
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @if (auth()->check())
+     @if  ((explode("/", Request::path())[0]=="switchinfo"))
+     <title>{{ucfirst(substr(Request::path(), strpos(Request::path(), "/") + 1))}} </title>
+     @else
+     <title> {{ ucfirst(Request::path()) }}  </title>
+     @endif
+     @endif
     
-    <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('img/apple-touch-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('img/apple-touch-icon-114x114.png')}}">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="{{asset('css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('fonts/font-awesome/css/font-awesome.css')}}">
-
-    <!-- Stylesheet
-    ================================================== -->
-    <link rel="stylesheet" type="text/css"  href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-
-    <script type="text/javascript" src="{{asset('js/modernizr.custom.js')}}"></script>
-
-    <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-   <style>
-.active a{
-    color: red !important;
-}
-</style>
-    
-    
-    
-  </head>
-  <body>
-    <div id="tf-home">
-        <div class="overlay">
-            <div id="sticky-anchor"></div>
-            <nav id="tf-menu" class="navbar navbar-default">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
+  
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{{ asset('assets/css/font-awesome.css') }}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+     
+           
+          
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand logo">GCR</a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                     <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    @if (auth()->check())
-                   <li class="{{ Request::path() == 'home' ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
-                    @endif
+                    </button>
+                    <a class="navbar-brand"><i class="fa fa-square-o "></i>&nbsp;GCR</a>
+                    
+                </div>
+                
+                <div class="navbar-collapse collapse">
+                    
+                    <ul class="nav navbar-nav navbar-header">
+                        @if (auth()->check())
                     @permission('USERS')
                     <li class="{{ Request::path() == 'users' ? 'active' : '' }}"><a href="{{ route('users.index') }}">Users</a></li>
                     @endpermission
@@ -82,23 +51,15 @@
                     @permission('PERMISSIONS')
                     <li class="{{ Request::path() == 'permissions' ? 'active' : '' }}"><a href="{{ route('permissions.index') }}">Privileges</a></li>
                     @endpermission
-                   
-                @if (auth()->check())
-                @if ( !empty ( $permissi ) )
-                 @foreach ($permissi as $key => $value)
-                 @permission($value)
-                  <li  class="{{ Request::path() == 'switchinfo/'.$value ? 'active' : '' }}"><a href="{{route('page', ['parameter' => $value])}}">{{$value}}</a></li>
-                  @endpermission
-                 @endforeach
-                 @endif 
-                 @endif
-                 <!--   <li><a href="{{route('page', ['parameter' => 'item-edit'])}}">item-edit</a></li>
-                    <li><a href="{{route('page', ['parameter' => 'role-list'])}}">role-list</a></li>
-                 <!--    <li><a href="{{ route('page',['parameter'=>'item-edit'])}}">item-edit</a></li>-->
-
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+                    @if ( !empty ( $permissi ) )
+                    @permission('PERMISSIONS')
+                     <li class="{{ Request::path() == 'viewcontent' ? 'active' : '' }}"><a href="{{ route('viewcontent') }}">ViewContent</a></li>
+                     @endpermission
+                     @endif
+                           @endif
+                    </ul>
+                     <ul class="nav navbar-nav navbar-right">
+                         
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -116,88 +77,103 @@
                         </li>
                     @endif
                 </ul>
-            </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
+                </div>
 
-            <div>
-                @yield('content')
             </div>
         </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center user-image-back">
+                        @if (auth()->check())
+                        <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:100px; height:100px;   border-radius:50%">
+                     @endif
+                    </li>
+
+
+                  @if (auth()->check())
+                    <li class="{{ Request::path() == 'home' ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+
+                  
+                @if ( !empty ( $permissi ) )
+                
+                @foreach ($permissi as $key => $value)
+                @if(view()->exists($value))
+                @permission($value)
+                  <li  class="{{ Request::path() == 'switchinfo/'.$value ? 'active' : '' }}"><a href="{{route('page', ['parameter' => $value])}}">{{$value}}</a></li>
+                 @endpermission
+                 @endif
+                 @endforeach
+                 
+                 @endif 
+                 @endif
+
+
+                 
+                
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        @if (auth()->check())
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+        @if (auth()->check())
+                      @if  ((explode("/", Request::path())[0]=="switchinfo"))
+                     <h2>{{ucfirst(substr(Request::path(), strpos(Request::path(), "/") + 1))}} Management</h2>
+                      @else
+                      <h2> {{ ucfirst(explode("/", Request::path())[0]) }} Management </h2>
+                   @endif
+@endif
+                    </div>
+                    
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+                  <div>
+                     @yield('content')
+                  </div>
+                 <!-- /. ROW  -->           
     </div>
-
-    <div id="tf-service">
-        <div class="container">
-
-            <div class="col-md-4">
-
-                <div class="media">
-                  <div class="media-left media-middle">
-                    <i class="fa fa-motorcycle"></i>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Brand & Graphics Design</h4>
-                    <p>Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                  </div>
-                </div>
-
+             <!-- /. PAGE INNER  -->
+             
             </div>
-
-            <div class="col-md-4">
-
-                <div class="media">
-                  <div class="media-left media-middle">
-                    <i class="fa fa-gears"></i>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Web Designer & Developer</h4>
-                    <p>Cras sit amet nibh libero, in gravida nulla. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                  </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="media">
-                  <div class="media-left media-middle">
-                    <i class="fa fa-heartbeat"></i>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Business Consultant</h4>
-                    <p>Metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                  </div>
-                </div>
-
-            </div>
-            
+        
+        @endif
+        
+        @if (Auth::guest())
+        @yield('content')
+        @endif
+         <!-- /. PAGE WRAPPER  -->
         </div>
-    </div>
-   
-
     
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{asset('js/jquery.1.11.1.js')}}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="{{asset('js/bootstrap.js')}}"></script>
-
-    <!-- Javascripts
-    ================================================== -->
-    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
     
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    
+    
+      <!-- BOOTSTRAP SCRIPTS -->
+    
+    <!-- METISMENU SCRIPTS -->
+  
+    
+    <script src="{{ asset('js/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+     <script src="{{ asset('assets/js/jquery.metisMenu.js') }}"></script>
+      <!-- CUSTOM SCRIPTS -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
    
     
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.3.1/jquery.twbsPagination.min.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-     <script type="text/javascript" src="{{asset('js/valid.js')}}"></script>
-<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-<script type="text/javascript">
- 
-</script>
+     <script src="{{asset('js/valid.js')}}"></script>
+    
+    
    
-  </body>
+</body>
 </html>

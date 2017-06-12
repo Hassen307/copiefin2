@@ -46,8 +46,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('permissions','PermissionController');
         Route::post('permissions/create',['as'=>'permissions.store','uses'=>'PermissionController@store','middleware' => ['permission:PERMISSIONS']]);
         Route::delete('permissions/{id}',['as'=>'permissions.destroy','uses'=>'PermissionController@destroy','middleware' => ['permission:PERMISSIONS']]);
+        
+        Route::get('permissions/{permission}/edit',['as'=>'permissions.edit','uses'=>'PermissionController@edit','middleware' => ['permission:PERMISSIONS']]);
+	Route::patch('permissions/{id}',['as'=>'permissions.update','uses'=>'RoleController@update','middleware' => ['permission:ROLES']]);
     
-    
+        
+         Route::post('viewcontent',['as'=>'viewcontent','uses'=>'PermissionController@store2','middleware' => ['permission:PERMISSIONS']]);
+    Route::get('viewcontent',['as'=>'viewcontent','uses'=>'PermissionController@index2','middleware' => ['permission:PERMISSIONS']]);
+  
     
   
    

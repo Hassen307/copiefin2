@@ -70,11 +70,13 @@
 
             <div class="container">
                 <div class="content">
-                    <h1>I create webistes</h1>
-                    <h3>that communicates, connects and engages customers</h3>
+                    <h1>Generic solution</h1>
+                    <h3>our solution can be used to secure any website</h3>
                     <br>
-                    <a href="#tf-contact" class="btn btn-primary my-btn">Contact</a>
-                    <a href="#tf-portfolio" class="btn btn-primary my-btn2">Portfolio</a>
+                    <h3>Now, you can ensure what User</h3>
+                    <a class="btn btn-primary my-btn">Can Do</a>
+                   <font size="6"> OR </font>
+                    <a class="btn btn-primary my-btn2">Can <b><u><font size="3">Not</font></u></b> Do</a>
                 </div>
             </div>
         </div>
@@ -90,8 +92,8 @@
                     <i class="fa fa-motorcycle"></i>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading">Brand & Graphics Design</h4>
-                    <p>Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                    <h4 class="media-heading">Easy to use</h4>
+                    <p>Our solution is easy to use, you dont need to be a web developer to implement it.</p>
                   </div>
                 </div>
 
@@ -104,8 +106,8 @@
                     <i class="fa fa-gears"></i>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading">Web Designer & Developer</h4>
-                    <p>Cras sit amet nibh libero, in gravida nulla. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                    <h4 class="media-heading">Less code more better</h4>
+                    <p> fewer lines are often better than more lines</p>
                   </div>
                 </div>
 
@@ -118,8 +120,8 @@
                     <i class="fa fa-heartbeat"></i>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading">Business Consultant</h4>
-                    <p>Metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                      <h4 class="media-heading"><b>Maxime Chattam</b></h4>
+                    <p> L'homme est hypocrite, il adapte les codes selon ses besoins.</p>
                   </div>
                 </div>
 

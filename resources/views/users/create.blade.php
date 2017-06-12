@@ -23,8 +23,8 @@
 	@endif
 	{!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
 	<div class="row">
-            <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"  style="border: 1px solid white; margin: 32px;padding: 25px; border-radius: 7px;">
+            <div class="col-lg-1 col-md-1 hidden-xs hidden-sm"></div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10"  style="border: 1px solid black; margin: 32px;padding: 25px; border-radius: 7px;">
 		<div class="row">
                 <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -80,7 +80,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <button type="submit" class="btn btn-success pull-right" style="width: 150px">Submit</button>
                 </div>
-                <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
+                <div class="col-lg-1 col-md-1 hidden-xs hidden-sm"></div>
             </div>
 	</div>
         </div>

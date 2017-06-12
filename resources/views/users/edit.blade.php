@@ -7,7 +7,7 @@
 	            <h2>Edit User</h2>
 	        </div>
 	        <div class="pull-right">
-	            <a class="btn btn-success" href="{{ route('users.index') }}"> Back</a>
+	            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
 	        </div>
 	    </div>
 	</div>
@@ -23,8 +23,8 @@
 	@endif
 	{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
         <div class="row">
-            <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"  style="border: 1px solid white; margin: 32px;padding: 25px; border-radius: 7px;">
+            <div class="col-lg-1 col-md-1 hidden-xs hidden-sm"></div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10"  style="border: 1px solid black; margin: 32px;padding: 25px; border-radius: 7px;">
             <div class="row">
                 <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -83,7 +83,7 @@
                 <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
             </div>
             </div>
-            <div class="col-lg-3 col-md-3 hidden-xs hidden-sm"></div>
+            <div class="col-lg-1 col-md-1 hidden-xs hidden-sm"></div>
         </div>
 	{!! Form::close() !!}
 @endsection
