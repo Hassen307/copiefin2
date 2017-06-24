@@ -52,16 +52,19 @@ class PermissionController extends Controller
        $naj1=Config::get('view.paths');
        $perm_name=$permission;
         $jah1=array_first($naj1);
-       
+       try{
         unlink($jah1 . "/".$perm_name.".blade.php");
-        
+       }
+       catch (\Exception $e) {
+    
+          }
        
         DB::table("permissions")->where('name',$permission)->delete();
        return redirect()->route('permissions.index')
                         ->with('success','Permission deleted successfully');
     }
     
-    public function index2(Request $request){
+    public function index2(){
         
       
         return view('viewcontent');

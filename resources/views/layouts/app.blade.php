@@ -13,13 +13,14 @@
     
   
 	<!-- BOOTSTRAP STYLES-->
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" >
      <!-- FONTAWESOME STYLES-->
-    <link href="{{ asset('assets/css/font-awesome.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/font-awesome.css') }}" rel="stylesheet" >
         <!-- CUSTOM STYLES-->
-    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" >
      <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' >
 </head>
 <body>
      
@@ -170,10 +171,20 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
    
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
+     
     
-     <script src="{{asset('js/valid.js')}}"></script>
-    
-    
+    <script type="text/javascript">
+        window.ParsleyConfig = {
+            errorsWrapper: '<div></div>',
+            errorTemplate: '<span class="error-text"></span>',
+            classHandler: function (el) {
+                return el.$element.closest('input');
+            },
+            successClass: 'valid',
+            errorClass: 'invalid'
+        };
+    </script>
    
 </body>
 </html>

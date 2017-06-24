@@ -66,29 +66,16 @@ class RoleController extends Controller
         $role->description = $request->input('description');
         $role->save();
         $fields = Input::get('result');
-        //$abc=$value->id;
-        $po=$fields[1];
+      
+    
         
-       // $field = $fields->first();
-        
-       // $attributes = array_keys($user->toArray());
-//dd($fields);
-      // foreach ($request->input('permission') as $key => $value) {
-       //     $role->attachPermission($value);
-      //  }
+      
 foreach ($fields as $key => $value) {
-  //  list($keys, $values) = array_divide($fi);
-  // $mykey= key($fi);
-  //dd($value);
-   //dd($mykey);
-    //$ooo=$keys[1];
-   // $ppp=$values[1];
-   // dd($ppp);
+  
     if ($value==1){
          $role->attachPermission($key);
     }
-   //     $role->attachPermission($keys);
- //  }
+  
 }
        return redirect()->route('roles.index')
                         ->with('success','Role created successfully');
@@ -102,7 +89,7 @@ foreach ($fields as $key => $value) {
     public function store2(Request $request){
         $permission = new Permission();
         $permission->name = $request->input('permiss');
-      //   dd($permission);
+      
         $permission->save();
         $admin = Role::where('name', 'admin')->first();
         $admin->attachPermission($permission);

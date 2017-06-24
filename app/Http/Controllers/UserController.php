@@ -47,11 +47,19 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
         
+        $data = User::orderBy('id','DESC')->paginate(5);
+        $user = Auth::user();
+        $role_id=$user->role_id;
+        $roles=Role::find($role_id)->name;
+        if($roles=='admin'){
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
         
+        }
+        else{
+            return view('errors.403');
+            }
     }
 
     /**
@@ -83,7 +91,7 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] =bcrypt($input['password']);
-      //  $input['password'] = Hash::make($input['password']);
+    
          
        $idrole=$request->input('roles');
        $role_id = head($idrole); 
@@ -104,14 +112,15 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { $user1 = Auth::user();
+        $role_id1=$user1->role_id;
+        $roles1=Role::find($role_id1)->name;
+        if($roles1=='admin'){
         $user = User::find($id);
         
         $Role_id=$user->role_id;
         $roles = Role::find($Role_id);
-       // $userRole = $user->roles->pluck('id','id')->toArray();
-       // $userRole=$user->role_id;
-        
+       
         $permissions=Permission::pluck('name','id');
         $userPermission = $roles->permissions->pluck('id','id')->toArray();
         foreach ($userPermission as $key => $value) {
@@ -119,6 +128,10 @@ class UserController extends Controller
          }
         
         return view('users.show',compact('user','user_perm'));
+               }
+           else{
+            return view('errors.403');
+            }
     }
 
     /**
@@ -129,13 +142,19 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        
         $user = User::find($id);
         $roles = Role::pluck('name','id');
-       // $userRole = $user->roles->pluck('id','id')->toArray();
         $userRole=$user->role_id;
-        //dd($role_id);
-
+         $user1 = Auth::user();
+        $role_id=$user1->role_id;
+        $roles1=Role::find($role_id)->name;
+        if($roles1=='admin'){
         return view('users.edit',compact('user','roles','userRole'));
+         }
+        else{
+            return view('errors.403');
+            }
     }
 
     /**
@@ -153,8 +172,7 @@ class UserController extends Controller
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
-     //   $role= roles()->id;
-     //   dd($role);
+    
 
         $input = $request->all();
         $idrole=$request->input('roles');
@@ -183,12 +201,35 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       // User::find($id)->delete();
-     //  $user = User::find($id);    
-      //  $user->delete();
+      $user = Auth::user();
+        $role_id=$user->role_id;
+        $roles=Role::find($role_id)->name;
+        if($roles=='admin'){
         DB::table('users')->where('id', $id)->delete();
-        //DB::delete('DELETE FROM users WHERE id =id');
         return redirect()->route('users.index')
                         ->with('successdel','User deleted successfully');
     }
+    else{
+            return view('errors.403');
+            }
+    }
+    public function active($id)
+    {
+        $user1 = Auth::user();
+        $role_id=$user1->role_id;
+        $roles=Role::find($role_id)->name;
+        if($roles=='admin'){
+        
+         $user = User::find($id);
+         
+         $user->verified = 1;
+         $user->email_token=NULL;
+         $user->update();
+        return redirect()->route('users.index')
+                        ->with('success','User activated successfully');
+    }
+     else{
+            return view('errors.403');
+            }
+    }  
 }

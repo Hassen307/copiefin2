@@ -13,20 +13,20 @@ class RoleTableSeeder extends Seeder
 */
 public function run()
 {
-// create admin role this way
+
 $admin = new Role();
 $admin->name = 'admin';
-$admin->description = 'admin'; // optional
+$admin->description = 'admin'; 
 $admin->save();
 
 $user = new Role();
 $user->name = 'user';
-$user->description = 'simple User '; // optional
+$user->description = 'simple User ';
 $user->save();
 
 $permissions1 = Permission::pluck('id');
 
-// and assign all permission like as below
+
 foreach ($permissions1 as $permission) {
 $admin->attachPermission($permission);
 }

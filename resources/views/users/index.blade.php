@@ -29,11 +29,14 @@
 			<th width="200px"><b>Name</b></th>
 			<th width="280px"><b>Email</b></th>
 			<th width="80px"><b>Roles</b></th>
-			<th width="280px">Action</th>
+			<th width="380px">Action</th>
 		</tr>
 	@foreach ($data as $key => $user)
-	<tr>
-            
+        @if($user->verified=='1')
+	<tr class="active">
+        @else
+        <tr class="danger">  
+        @endif
 		
 		<td><b>{{ $user->name }}</b></td>
 		<td><b>{{ $user->email }}</b></td>
@@ -47,10 +50,16 @@
 		</td>
 		<td>
 			<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+                        @if ($user->roles->name!='admin')
 			<a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                        
 			{!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}
+                @endif
+                @if($user->verified!='1')
+                <a class="btn btn-warning" href="{{ route('users.active',$user->id) }}">Activate</a>
+                @endif
 		</td>
 	</tr>
 	@endforeach

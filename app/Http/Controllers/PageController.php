@@ -15,65 +15,43 @@ class PageController extends Controller
 {
      public function index(Request $parameter)
     {
-        //  $data['parameter'] = $parameter;
-     //$a=Session::get('some');
-     //dd($a);
-       // return view('page');
-         
-      $kj= Route::getCurrentRoute()->parameters;
-      $lk=array_first($kj);
-      
-      
-     // dd($jah);
-      
-     //dd($_SERVER['DOCUMENT_ROOT']);die();
-      //$myfile = fopen("testfile.txt", "w");
-      //ha=$parameter(pathInfo);
+ 
+      $route= Route::getCurrentRoute()->parameters;
+      $path=array_first($route);
+
      $user = Auth::user();
      $id=$user->role_id;
      $role = Role::find($id);
-     
-      //    $role = Role::find($id);
       $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
            ->where("permission_role.role_id",$id)
         ->get();
-     // $h=$rolePermissions[]->name;
-      $attributes = array_keys($rolePermissions->toArray());
-      //$k=$rolePermissions-;
-     // foreach ($rolePermissions as $key=>$Permission){
-     //     $s=$attributes;
-     //     $h=$rolePermissions[$s]->name;
-     //   $permission[]= Permission::find($s);
-     // }
-     //  $f= $rolePermissions->contains('items','item-edit');
-       // $p=$permission->permission('name');
-      foreach ($rolePermissions as $p) {
-$h[]=$p->name;
+    
+    
+      foreach ($rolePermissions as $value) {
+$user_perm[]=$value->name;
          }
-         $y=FALSE;
-       //  $a=Session::get('some');
-         //$a=$parameter;
-         //dd($$rolePermissions);
-         if (!empty($h)){
-    foreach ($h as $o) {
-      if($o==$lk){
-          $y=true;
+         $have_perm=FALSE;
+    
+         if (!empty($user_perm)){
+    foreach ($user_perm as $value) {
+      if($value==$path){
+          $have_perm=true;
       } 
          }
          }
-         //dd($y);
-      // $f= $h->contains('item-edit');
-       
-       //$j= Permission::
+        
          
-     if ($y==true){
-     return view($lk);}  
-     else return view('errors.403');
+     if ($have_perm==true){
+     return view($path);}  
+     else{ return view('errors.403');
      
      
-     
+     }
      
      
      
     }
+    
+    
+  
 }

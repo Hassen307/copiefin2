@@ -19,8 +19,9 @@ Route::auth();
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify'); 
 
 Route::group(['middleware' => ['auth']], function() {
-
+         
 	Route::get('home', ['as'=>'home','uses'=>'HomeController@index']);
+       
 
 	Route::resource('users','UserController');
 
@@ -56,7 +57,7 @@ Route::group(['middleware' => ['auth']], function() {
   
     
   
-   
+   Route::get('users/act/{id}',['as'=>'users.active','uses'=>'UserController@active','middleware' => ['permission:ROLES']]);
   
         
      

@@ -13,18 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-         // Create table for storing roles
+      
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->timestamps();
         });
-
-        
-        
-        // Create table for storing users
-        Schema::create('users', function (Blueprint $table) {
+       Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned()->default(2);
             $table->foreign('role_id')->references('id')->on('roles')
@@ -34,21 +30,21 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('default.jpg');
             $table->string('password');
             
-            $table->tinyInteger('verified')->default(0); // this column will be a TINYINT with a default value of 0 , [0 for false & 1 for true i.e. verified]
-            $table->string('email_token')->nullable(); // this column will be a VARCHAR with no default value and will also BE NULLABLE
+            $table->tinyInteger('verified')->default(0);
+            $table->string('email_token')->nullable(); 
             
             $table->rememberToken();
             $table->timestamps();
         });
         
-         // Create table for storing permissions
+       
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
         });
 
-        // Create table for associating permissions to roles (Many-to-Many)
+      
         Schema::create('permission_role', function (Blueprint $table) {
             $table->integer('permission_id')->unsigned();
             $table->integer('role_id')->unsigned();

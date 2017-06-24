@@ -71,12 +71,11 @@
             <div class="container">
                 <div class="content">
                     <h1>Generic solution</h1>
-                    <h3>our solution can be used to secure any website</h3>
-                    <br>
-                    <h3>Now, you can ensure what User</h3>
-                    <a class="btn btn-primary my-btn">Can Do</a>
-                   <font size="6"> OR </font>
-                    <a class="btn btn-primary my-btn2">Can <b><u><font size="3">Not</font></u></b> Do</a>
+                    
+                    <br><br><br><br><br><br><br>
+                    
+                    
+                   
                 </div>
             </div>
         </div>
@@ -85,47 +84,10 @@
     <div id="tf-service">
         <div class="container">
 
-            <div class="col-md-4">
+         
 
-                <div class="media">
-                  <div class="media-left media-middle">
-                    <i class="fa fa-motorcycle"></i>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Easy to use</h4>
-                    <p>Our solution is easy to use, you dont need to be a web developer to implement it.</p>
-                  </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="media">
-                  <div class="media-left media-middle">
-                    <i class="fa fa-gears"></i>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Less code more better</h4>
-                    <p> fewer lines are often better than more lines</p>
-                  </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="media">
-                  <div class="media-left media-middle">
-                    <i class="fa fa-heartbeat"></i>
-                  </div>
-                  <div class="media-body">
-                      <h4 class="media-heading"><b>Maxime Chattam</b></h4>
-                    <p> L'homme est hypocrite, il adapte les codes selon ses besoins.</p>
-                  </div>
-                </div>
-
-            </div>
+       
+            
             
         </div>
     </div>

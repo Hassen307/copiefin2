@@ -32,14 +32,14 @@
 		<td><b>{{ $role->description }}</b></td>
 		<td>
 			<a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-			
+			@if ($role->name!='admin')
 			<a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
 			
 			
 			{!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
         	{!! Form::close() !!}
-        	
+        	@endif
 		</td>
 	</tr>
 	@endforeach
